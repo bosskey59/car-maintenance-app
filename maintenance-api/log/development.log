@@ -1,0 +1,188 @@
+  [1m[35m (303.5ms)[0m  [1m[35mCREATE DATABASE "maintenance_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (75.4ms)[0m  [1m[35mCREATE DATABASE "maintenance_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (23.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7932193972486203420)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCars (20201117180909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "model" character varying, "year" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201117180909"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLogs (20201117181127)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "logs" ("id" bigserial primary key, "service" character varying, "mileage" integer, "car_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_011203715a"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_logs_on_car_id" ON "logs"  ("car_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201117181127"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-11-17 18:11:45.440625"], ["updated_at", "2020-11-17 18:11:45.440625"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7932193972486203420)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7932193972486203420)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLogs (20201117181127)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mDROP TABLE "logs"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20201117181127"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7932193972486203420)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7932193972486203420)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCars (20201117180909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "cars"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20201117180909"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7932193972486203420)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7932193972486203420)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCars (20201117180909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "model" character varying, "year" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201117180909"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLogs (20201117181127)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "logs" ("id" bigserial primary key, "service" character varying, "mileage" integer, "car_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_011203715a"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_logs_on_car_id" ON "logs"  ("car_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201117181127"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7932193972486203420)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (3.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Ford"], ["model", "F150"], ["year", 2020], ["created_at", "2020-11-17 18:28:49.722219"], ["updated_at", "2020-11-17 18:28:49.722219"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Buick"], ["model", "LaCrosse"], ["year", 2020], ["created_at", "2020-11-17 18:28:49.729761"], ["updated_at", "2020-11-17 18:28:49.729761"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Toyota"], ["model", "Corolla"], ["year", 2011], ["created_at", "2020-11-17 18:28:49.732384"], ["updated_at", "2020-11-17 18:28:49.732384"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Toyota"], ["model", "Prius"], ["year", 2015], ["created_at", "2020-11-17 18:28:49.734668"], ["updated_at", "2020-11-17 18:28:49.734668"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Toyota"], ["model", "Corolla"], ["year", 2016], ["created_at", "2020-11-17 18:28:49.737185"], ["updated_at", "2020-11-17 18:28:49.737185"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Honda"], ["model", "Accord"], ["year", 2011], ["created_at", "2020-11-17 18:28:49.739845"], ["updated_at", "2020-11-17 18:28:49.739845"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "model", "year", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["make", "Dodge"], ["model", "Challenger"], ["year", 2019], ["created_at", "2020-11-17 18:28:49.742228"], ["updated_at", "2020-11-17 18:28:49.742228"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mLog Create (4.5ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "clutch replacement"], ["mileage", 14901], ["car_id", 6], ["created_at", "2020-11-17 18:30:16.918112"], ["updated_at", "2020-11-17 18:30:16.918112"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "oil change"], ["mileage", 65125], ["car_id", 6], ["created_at", "2020-11-17 18:30:16.926793"], ["updated_at", "2020-11-17 18:30:16.926793"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "tire rotation"], ["mileage", 83064], ["car_id", 5], ["created_at", "2020-11-17 18:30:16.930377"], ["updated_at", "2020-11-17 18:30:16.930377"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "oil change"], ["mileage", 32074], ["car_id", 1], ["created_at", "2020-11-17 18:30:16.934002"], ["updated_at", "2020-11-17 18:30:16.934002"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mLog Create (0.3ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "engine oil filter"], ["mileage", 34751], ["car_id", 4], ["created_at", "2020-11-17 18:30:16.937344"], ["updated_at", "2020-11-17 18:30:16.937344"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mLog Create (0.4ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "tire rotation"], ["mileage", 60092], ["car_id", 5], ["created_at", "2020-11-17 18:30:16.952403"], ["updated_at", "2020-11-17 18:30:16.952403"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "transmission flush"], ["mileage", 66877], ["car_id", 2], ["created_at", "2020-11-17 18:30:16.956117"], ["updated_at", "2020-11-17 18:30:16.956117"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "cabin oil filter"], ["mileage", 52521], ["car_id", 1], ["created_at", "2020-11-17 18:30:16.959369"], ["updated_at", "2020-11-17 18:30:16.959369"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "cabin oil filter"], ["mileage", 57242], ["car_id", 1], ["created_at", "2020-11-17 18:30:16.962624"], ["updated_at", "2020-11-17 18:30:16.962624"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mLog Create (0.2ms)[0m  [1m[32mINSERT INTO "logs" ("service", "mileage", "car_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["service", "transmission flush"], ["mileage", 73009], ["car_id", 5], ["created_at", "2020-11-17 18:30:16.965857"], ["updated_at", "2020-11-17 18:30:16.965857"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" ORDER BY "cars"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1 LIMIT $2[0m  [["car_id", 1], ["LIMIT", 11]]
+Started GET "/" for ::1 at 2020-11-17 12:30:45 -0600
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/aaguilar2/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/aaguilar2/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.3ms | Allocations: 480)
+Completed 200 OK in 15ms (Views: 10.7ms | ActiveRecord: 0.0ms | Allocations: 2631)
+
+
+Started GET "/cars" for ::1 at 2020-11-17 12:30:50 -0600
+  
+SyntaxError (/Users/aaguilar2/Development/code/ft-072720/js/auto-maintenance-tracker/maintenance-api/app/controllers/cars_controller.rb:8: syntax error, unexpected '}', expecting =>
+...er json: @cars, include:{:logs}
+...                              ^
+/Users/aaguilar2/Development/code/ft-072720/js/auto-maintenance-tracker/maintenance-api/app/controllers/cars_controller.rb:51: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/cars_controller.rb:8: syntax error, unexpected '}', expecting =>
+app/controllers/cars_controller.rb:51: syntax error, unexpected end-of-input, expecting end
+app/controllers/cars_controller.rb:8: syntax error, unexpected '}', expecting =>
+app/controllers/cars_controller.rb:51: syntax error, unexpected end-of-input, expecting end
+Started GET "/cars" for ::1 at 2020-11-17 12:31:07 -0600
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Car Load (0.0ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 0.0ms | Allocations: 80213)
+
+
+  [1m[36mCACHE Car Load (0.0ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+  
+NameError (undefined local variable or method `logs' for #<CarsController:0x00007f8cd4412b30>):
+  
+app/controllers/cars_controller.rb:8:in `index'
+Started GET "/cars" for ::1 at 2020-11-17 12:31:40 -0600
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.4ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 1]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 2]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 3]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 4]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.2ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 5]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.3ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 6]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+  [1m[36mLog Load (0.1ms)[0m  [1m[34mSELECT "logs".* FROM "logs" WHERE "logs"."car_id" = $1[0m  [["car_id", 7]]
+  ↳ app/controllers/cars_controller.rb:8:in `index'
+Completed 200 OK in 42ms (Views: 34.3ms | ActiveRecord: 5.9ms | Allocations: 21669)
+
+
