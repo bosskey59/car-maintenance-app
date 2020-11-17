@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# 7.times do
-#   make = Faker::Vehicle.make
-#   model = Faker::Vehicle.model(make_of_model: make)
+7.times do
+  make = Faker::Vehicle.make
+  model = Faker::Vehicle.model(make_of_model: make)
 
-#   Car.create(make:make , model:model, year:Faker::Vehicle.year)
-# end
+  Car.create(make:make , model:model, year:Faker::Vehicle.year)
+end
 
 10.times do 
   services = ["oil change", "tire rotation", "engine oil filter", "cabin oil filter", "transmission flush", "clutch replacement"]
