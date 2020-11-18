@@ -7,9 +7,11 @@ class Car {
     this.make = car_obj.make
     this.model = car_obj.model
     this.year = car_obj.year
-    // this.logs
+    this.logs = car_obj.logs
     Car.all.push(this)
   }
+
+  
 
 
   htmlify(){
@@ -22,16 +24,42 @@ class Car {
         <p class="card-text">Make: ${this.make}</p>
         <p class="card-text">Model: ${this.model}</p>
         <p class="card-text">Year: ${this.year}</p>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center l">
           <div class="btn-group">
             <button type="button" id="car-${this.id}" class="btn btn-sm btn-outline-secondary logs-btn">Logs</button>
           </div>
-          <small class="text-muted">3 logs</small>
+          <small class="text-muted">${this.logs.length} logs</small>
+        </div>
+        <div class="display-log" id="logs-${this.id}">
+          <div class="d-flex justify-content-between align-items-center l " >
+            <strong> Logs </strong>
+              <ul>
+                ${this.logs.map(log => `<li> ${log.mileage}: ${log.service} </li>`).join("")}
+              </ul>
+          </div>
+          <div class="d-flex justify-content-between align-items-center l ">
+            <form class="log-form">
+              <div class="form-group">
+                <label>Mileage</label>
+                <input type="number" class="form-control" id="log-mileage" aria-describedby="mileage">
+              </div>
+              <div class="form-group">
+                <label>Service Performed</label>
+                <input type="string" class="form-control" id="log-service" aria-describedby="service">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
   `)
+
+//   <div class="btn-group">
+//   <button type="button" id="car-${this.id}" class="btn btn-sm btn-outline-secondary logs-btn">Logs</button>
+// </div>
+// <small class="text-muted">3 logs</small>
 
   }
 
