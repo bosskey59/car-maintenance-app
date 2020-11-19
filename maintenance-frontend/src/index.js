@@ -25,7 +25,22 @@ function bindLogEvent(){
 
 function bindLogForm(){
   const logForms = document.querySelectorAll(".log-form")
-  debugger
+  for(form of logForms){
+    form.addEventListener("submit", function(e){
+      e.preventDefault()
+      const carId = e.target.parentElement.parentElement.id.split("logs-")[1]
+      // const formData = new FormData(e.target)
+      const logData = {
+        car_id: carId,
+        mileage: e.target.querySelector(".log-mileage").value ,
+        service: e.target.querySelector(".log-service").value
+      }
+      api.postLog(logData)
+      .catch(err => alert(err))
+
+      debugger
+    })
+  }
 }
 
 async function renderCars(){

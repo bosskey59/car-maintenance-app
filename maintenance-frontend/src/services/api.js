@@ -2,6 +2,13 @@ class ApiService{
 
   constructor() {
     this.baseUrl = `http://localhost:3000`;
+    this.options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }
   }
 
   async getAllCars(){
@@ -10,12 +17,16 @@ class ApiService{
     return data
   }
 
+  async postLog(logObj){
+    const resp = await fetch(this.baseUrl+"/logs",{...this.options, body: JSON.stringify(logObj)})
+    const data = await resp.json()
+    return data
+  }
+
   // getAllCarsthen(){
-  //   fetch(this.baseUrl+"/cars")
+  //   return fetch(this.baseUrl+"/cars")
   //   .then(resp =>resp.json())
-  //   .then( data =>{
-  //     debugger
-  //   })
+  
   // }
 
 

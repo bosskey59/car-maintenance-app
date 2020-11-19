@@ -39,13 +39,12 @@ class Car {
           </div>
           <div class="d-flex justify-content-between align-items-center l ">
             <form class="log-form">
-              <div class="form-group">
-                <label>Mileage</label>
-                <input type="number" class="form-control" id="log-mileage" aria-describedby="mileage">
-              </div>
+
+                <input type="number" name="log[mileage]" class="form-control log-mileage" aria-describedby="mileage">
+
               <div class="form-group">
                 <label>Service Performed</label>
-                <input type="string" class="form-control" id="log-service" aria-describedby="service">
+                <input type="string" name="log[service]" class="form-control log-service" aria-describedby="service">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
