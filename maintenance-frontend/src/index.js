@@ -5,6 +5,7 @@ const api = new ApiService();
 
 const init = () =>{
   renderCars()
+  console.log("hi")
   // bindEvents()
 }
 
@@ -29,21 +30,27 @@ function bindLogForm(){
     form.addEventListener("submit", function(e){
       e.preventDefault()
       const carId = e.target.parentElement.parentElement.id.split("logs-")[1]
-      // const formData = new FormData(e.target)
-      const logData = {
-        car_id: carId,
-        mileage: e.target.querySelector(".log-mileage").value ,
-        service: e.target.querySelector(".log-service").value
-      }
-      api.postLog(logData)
-      .catch(err => alert(err))
+      const formData = new FormData(e.target)
+      // const logData = {
+      //   car_id: carId,
+      //   mileage: e.target.querySelector(".log-mileage").value ,
+      //   service: e.target.querySelector(".log-service").value
+      // }
+      formData.append("log[car_id]", carId)
+      api.postLog(formData)
+      .then(()=>{
+        renderCars()
+      })
+      // check if log has errors if so throw alert else re render the whole page(because im lazy)
+     
 
-      debugger
+      // debugger
     })
   }
 }
 
 async function renderCars(){
+  Car.all = []
   const cars = await api.getAllCars()
   for(car of cars){
     new Car(car)

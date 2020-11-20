@@ -15,6 +15,7 @@ class LogsController < ApplicationController
 
   # POST /logs
   def create
+    # byebug
     @log = Log.new(log_params)
 
     if @log.save

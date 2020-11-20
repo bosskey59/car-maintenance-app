@@ -5,7 +5,7 @@ class ApiService{
     this.options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        
         'Accept': 'application/json'
       }
     }
@@ -18,7 +18,7 @@ class ApiService{
   }
 
   async postLog(logObj){
-    const resp = await fetch(this.baseUrl+"/logs",{...this.options, body: JSON.stringify(logObj)})
+    const resp = await fetch(this.baseUrl+"/logs",{...this.options, body:logObj})
     const data = await resp.json()
     return data
   }
